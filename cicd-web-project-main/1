@@ -1,0 +1,141 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+
+EDITOR=vi
+export EDITOR
+set -o vi
+export PS1="[\$LOGNAME@`hostname`:\$PWD]$ "
+#export PS1="[\$LOGNAME@`hostname`:\>]$ "
+
+alias sp="source ~/.bash_profile"
+alias vp="vi ~/.bash_profile"
+
+#alias wbin="cd ~/whatap_single/bin"
+#alias wconf="cd ~/whatap_single/conf"
+
+alias mywork="cd ~/DevWorkSpace"
+#export TOMCAT_HOME="/mnt/c/DevWorkSpace/DOCKER/inflearn-jenkins/apache-tomcat-9.0.65"
+export TOMCAT_HOME="/home/user01/sw.home/apache-tomcat-9.0.65"
+
+export JAVA_HOME=/usr/jdk/jdk1.8.0_77
+#export JAVA_HOME=/usr/jdk/jdk-11.0.2
+export PATH=$JAVA_HOME/bin:$TOMCAT_HOME/bin:$PATH
+
+export PATH=~/bin:$PATH
+
+############################################################
+# System Alias
+############################################################
+# rinet conf : /etc/rinetd.conf
+alias rstart="sudo rinetd start"
+alias rstop="sudo rinetd stop"
+alias rrestart="sudo rinetd restart"
+alias rconf="cat /etc/rinetd.conf"
+alias netchk="netstat -an | grep"
+alias pschk="ps -ef | grep -i"
+
+############################################################
+# Tomcat Alias
+############################################################
+alias tstart="$TOMCAT_HOME/bin/startup.sh"
+alias tstop="$TOMCAT_HOME/bin/shutdown.sh"
+
+############################################################
+# SSH Alias
+############################################################
+# jenkins-server 
+alias jssh="docker exec -it jenkins-server bash"
+alias jssh2="docker exec -it -u root jenkins-server bash"
+# ansible-server 
+alias assh="ssh root@localhost -p 20022"
+# docker-server 
+alias dssh="ssh root@localhost -p 10022"
+
+############################################################
+# Jenkins Alias
+############################################################
+alias jenwork="cd /mnt/c/DevWorkSpace/DOCKER/inflearn-jenkins/jenkins_home/workspace"
+
+############################################################
+# Docker Alias
+############################################################
+alias dlogin="sudo docker login"
+alias dlogout="sudo docker logout"
+alias dstart="sudo service docker start"
+alias dstop="sudo service docker stop"
+alias dansible="docker start ansible-server"
+alias ddocker="docker start docker-server"
+alias dps="sudo docker ps"
+
+alias dpsa="sudo docker ps -a"
+alias dimg="sudo docker images"
+alias dinfo="sudo docker info"
+alias dnet="docker network ls"
+alias dinspect="docker network inspect bridge"
+#alias dexa="docker exec -it ansible-server bash"
+#alias dexd="docker exec -it docker-server bash"
+#alias dbuild="sudo docker build ./"
+#alias drun="sudo docker run -it [image]"
+#alias dpush="sudo docker push [image]"
+#alias drmi="sudo docker rmi [image]"
+#alias drm="sudo docker rm -f $(docker ps -aq --filter ancestor=brandon9999/hellodocker)"
+#alias dping="docker run alpine ping localhost"
+
+############################################################
+# K8S Alias
+############################################################
+alias k="kubectl"
+alias kd="kubectl delete"
+alias mprofile="minikube profile list"
+alias mci="kubectl cluster-info"
+alias msvc="minikube service list"
+alias mport="docker port minikube"
+alias maddon="minikube addons list"
+alias mstatus="minikube status"
+alias kv="kubectl version --client --output=yaml"
+alias kga="kubectl get all"
+alias kgn="kubectl get nodes"
+alias kgp="kubectl get pods"
+alias kgp2="kubectl get pod -o wide"
+alias kgs="kubectl get services"
+alias kgd="kubectl get deployments"
+
+#alias mstart="minikube start --driver=docker --memory=3218mb"
+alias mstart="minikube start --driver=docker"
+#alias mstart="minikube start --driver=docker --listen-address=0.0.0.0"
+#alias mstart2="minikube start -p minikube2 --kubernetes-version=v1.23.0"
+#alias mstart="minikube start --driver=docker --kubernetes-version=1.20.11 --memory=60000 —cpus=max --nodes 2 --listen-address=0.0.0.0 --disk-size=200g --profile miku"
+alias mstop="minikube stop"
+alias mdash="minikube dashboard --url &"
+alias mdashp="kubectl proxy --address='0.0.0.0' --disable-filter=true &"
+
+alias kpf="nohup kubectl port-forward --address=0.0.0.0 deployment/cicd-deployment 32000:8080 &"
+
+############################################################
+# Sample NginX
+############################################################
+#alias kcrep="kubectl run sample-nginx --image=nginx --port=80"
+#alias kdesp="kubectl describe pod/sample-nginx"
+
+#alias kcd="kubectl create deployment sample-nginx --image=nginx"
+#alias ksc1="kubectl scale deployment sample-nginx --replicas=1"
+#alias ksc2="kubectl scale deployment sample-nginx --replicas=2"
+#alias ksc3="kubectl scale deployment sample-nginx --replicas=3"
+#alias kdd="kubectl delete deployment.apps/sample-nginx"
+
+#alias kexec="kubectl exec -it nginx-deployment-7fb96c846b-6rtkq -- /bin/bash"
+#alias kexpose="kubectl expose deployment nginx-deployment --port=80 --type=NodePort"
+#alias kdels="kubectl delete service nginx-deployment"
+
+alias kscript1="kubectl apply -f /mnt/c/DevWorkSpace/DOCKER/inflearn-jenkins/git/jenkins_cicd_script/k8s_script/sample1.yml"
+alias kscript1-1="kubectl apply -f /mnt/c/DevWorkSpace/DOCKER/inflearn-jenkins/git/jenkins_cicd_script/k8s_script/sample1-1.yml"
